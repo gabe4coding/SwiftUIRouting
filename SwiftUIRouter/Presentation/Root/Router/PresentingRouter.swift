@@ -6,20 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol RootViewRouterInterface: Router {
-    func present()
-    func push()
+    func present(namespace: Namespace.ID)
 }
 
 class RootViewRouter: Router, RootViewRouterInterface {
-    func present() {
+    func present(namespace: Namespace.ID) {
         let router = Router(isPresented: isSwapped)
-        swap(with: DetailView(router: router))
-    }
-    
-    func push() {
-        let router = Router(isPresented: isNavigating)
-        navigateTo(DetailView(router: router))
+        swap(with: DetailView(router: router, namespace: namespace))
     }
 }

@@ -7,19 +7,28 @@
 
 import SwiftUI
 
-struct RootView<R: RootViewRouterInterface>: View {
+struct Constants {
+    static let matchedLabelGeometry = "label"
+    static let matchedColorGeometry = "color"
+}
+
+struct RootView<R: RootViewRouterInterface>: NamespacedView {
     @EnvironmentObject internal var router: R
-    
+    @Namespace internal var namespace
+
     var body: some View {
-        NavigationView {
-            Text("Root")
-                .onTapGesture {
-                    router.present()
-                }.onLongPressGesture(perform: {
-                    router.push()
-                })
-                .swap(router)
+        ZStack {
+            ZStack {
+                Text("Root")
+                    .matchedGeometryEffect(id: Constants.matchedLabelGeometry, in: namespace)
+                    .font(.system(size: 30))
+            }
+            .padding()
         }
+        .onTapGesture {
+            router.present(namespace: namespace)
+        }
+        .swap(router)
     }
 }
 

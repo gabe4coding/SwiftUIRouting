@@ -8,13 +8,6 @@
 import Foundation
 import SwiftUI
 
-protocol RouterBindable {
-    associatedtype RouterObject: Router
-    var router: RouterObject { get }
-    
-    init(router: RouterObject)
-}
-
 class Router: ObservableObject {
     struct State {
         var navigating: AnyView? = nil
@@ -24,7 +17,6 @@ class Router: ObservableObject {
         var isPresented: Binding<Bool>
     }
     
-    @Namespace var namespace
     @Published private(set) var state: State
     
     init(isPresented: Binding<Bool>) {
@@ -46,9 +38,7 @@ extension Router {
     }
     
     func swap<V: View>(with view: V) {
-        withAnimation(.easeInOut(duration: 0.5)) {
-            state.swapView = AnyView(view)
-        }
+        state.swapView = AnyView(view)
     }
     
     func dismiss() {
@@ -112,6 +102,6 @@ extension View {
     }
     
     func swap(_ router: Router) -> some View {
-        self.modifier(SwapViewModifier(presentingView: router.binding(keyPath: \.swapView)))
+        return self.modifier(SwapViewModifier(presentingView: router.binding(keyPath: \.swapView)))
     }
 }

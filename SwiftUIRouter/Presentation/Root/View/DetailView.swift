@@ -8,41 +8,52 @@
 import Foundation
 import SwiftUI
 
-struct DetailView<R: Router>: View, RouterBindable {
+struct DetailView<R: Router>: NamespacedView, MatchingRouterBindable {
     
     internal var router: R
+    internal var namespace: Namespace.ID
     
     @State var appear: Bool = false
     
-    init(router: R) {
+    init(router: R, namespace: Namespace.ID) {
         self.router = router
+        self.namespace = namespace
     }
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .top) {
             if appear {
                 RoundedRectangle(cornerRadius: 15.0, style: .continuous)
-                    .fill(.red)
-                    .padding()
+                    .fill(.gray.opacity(0.5))
                     .frame(height:200)
                     .transition(.scale.combined(with: .opacity))
-                
-                Text("Detail").onTapGesture {
-                    withAnimation(.spring(response: 0.2, dampingFraction: 0.7)) {
-                        self.appear.toggle()
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        self.router.dismiss()
-                    }
-                }
+            }
+            ZStack {
+                Text("Root")
+                    .matchedGeometryEffect(id: Constants.matchedLabelGeometry, in: namespace)
+                    .font(.system(size: 30))
+            }
+            .padding()
+        }
+        .padding()
+        .onAppear {
+            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                self.appear.toggle()
             }
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: {
-                withAnimation(.spring(response: 0.2, dampingFraction: 0.7)) {
-                    self.appear.toggle()
-                }
-            })
+        .onTapGesture {
+            withAnimation(.spring(response: 0.2, dampingFraction: 0.9)) {
+                self.appear.toggle()
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.router.dismiss()
+            }
         }
+    }
+}
+
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailView(router: Router(isPresented: .constant(true)), namespace: Namespace.init().wrappedValue)
     }
 }

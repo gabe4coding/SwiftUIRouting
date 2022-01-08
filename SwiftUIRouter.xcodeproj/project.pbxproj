@@ -19,6 +19,8 @@
 		F792BA6B2789ABB300038DBD /* PresentingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BA6A2789ABB300038DBD /* PresentingRouter.swift */; };
 		F792BA732789AEA100038DBD /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BA722789AEA100038DBD /* DetailView.swift */; };
 		F792BA752789B67200038DBD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F792BA742789B67200038DBD /* README.md */; };
+		F792BA772789EE8500038DBD /* NamespacedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BA762789EE8500038DBD /* NamespacedView.swift */; };
+		F792BA792789EEA700038DBD /* RouterBindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F792BA782789EEA600038DBD /* RouterBindable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		F792BA6A2789ABB300038DBD /* PresentingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentingRouter.swift; sourceTree = "<group>"; };
 		F792BA722789AEA100038DBD /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		F792BA742789B67200038DBD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F792BA762789EE8500038DBD /* NamespacedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NamespacedView.swift; sourceTree = "<group>"; };
+		F792BA782789EEA600038DBD /* RouterBindable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterBindable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,8 @@
 			children = (
 				F792BA68278995C100038DBD /* RouterModifiers.swift */,
 				F792BA642789950800038DBD /* Router.swift */,
+				F792BA762789EE8500038DBD /* NamespacedView.swift */,
+				F792BA782789EEA600038DBD /* RouterBindable.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -314,11 +320,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F792BA6B2789ABB300038DBD /* PresentingRouter.swift in Sources */,
+				F792BA792789EEA700038DBD /* RouterBindable.swift in Sources */,
 				F792BA732789AEA100038DBD /* DetailView.swift in Sources */,
 				F792BA69278995C100038DBD /* RouterModifiers.swift in Sources */,
 				F792BA3D278994E700038DBD /* RootView.swift in Sources */,
 				F792BA652789950800038DBD /* Router.swift in Sources */,
 				F792BA3B278994E700038DBD /* SwiftUIRouterApp.swift in Sources */,
+				F792BA772789EE8500038DBD /* NamespacedView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

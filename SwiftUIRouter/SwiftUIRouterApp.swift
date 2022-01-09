@@ -11,7 +11,10 @@ import SwiftUI
 struct SwiftUIRouterApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView(router: RootViewRouter(isPresented: .constant(false)))
+            RootView<RootViewRouter>()
+                .environmentObject(
+                    RootViewRouter(isPresented: .constant(false))
+                )
         }
     }
 }

@@ -5,7 +5,7 @@ A SwiftUI Routing solution inspired by the article [Routing in SwiftUI](https://
 I wanted to create this repository to keep track of a working solution of Routing in SwiftUI which covers:
 - NavigationLink (Push)
 - Sheet (Modal)
-- Subview
+- Top
 - Swap
 
 I'll try to extend this solution to support:

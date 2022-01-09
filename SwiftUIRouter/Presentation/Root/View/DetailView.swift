@@ -10,7 +10,7 @@ import SwiftUI
 
 struct DetailView<R: Router>: NamespacedView, RouterBindable {
     
-    internal var router: R
+    @ObservedObject internal var router: R
     
     @State var appear: Bool = false
     @Environment(\.namespace) var namespace: Namespace.ID!

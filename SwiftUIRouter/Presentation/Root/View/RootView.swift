@@ -12,8 +12,15 @@ struct Constants {
     static let matchedColorGeometry = "color"
 }
 
-struct RootView<R: RootViewRouterInterface>: View {
-    @EnvironmentObject internal var router: R
+struct RootView<R: RootViewRouterInterface>: View, RouterBindable {
+    
+    @ObservedObject internal var router: R
+    
+    init(router: R) {
+        self.router = router
+    }
+    
+    //@EnvironmentObject internal var router: R
     @Namespace internal var namespace
 
     var body: some View {
@@ -34,7 +41,7 @@ struct RootView<R: RootViewRouterInterface>: View {
 
 struct PresentingView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView<RootViewRouter>().environmentObject(RootViewRouter(isPresented: .constant(false)))
+        RootView<RootViewRouter>(router:  RootViewRouter(isPresented: .constant(false)))
     }
 }
 

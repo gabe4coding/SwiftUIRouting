@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 
 protocol RootViewRouterInterface: Router {
-    func present(namespace: Namespace.ID)
+    func present()
 }
 
 class RootViewRouter: Router, RootViewRouterInterface {
-    func present(namespace: Namespace.ID) {
+    func present() {
         let router = Router(isPresented: isSwapped)
-        swap(with: DetailView(router: router, namespace: namespace))
+        swap(with: DetailView(router: router))
     }
 }

@@ -12,7 +12,7 @@ struct Constants {
     static let matchedColorGeometry = "color"
 }
 
-struct RootView<R: RootViewRouterInterface>: NamespacedView {
+struct RootView<R: RootViewRouterInterface>: View {
     @EnvironmentObject internal var router: R
     @Namespace internal var namespace
 
@@ -26,9 +26,9 @@ struct RootView<R: RootViewRouterInterface>: NamespacedView {
             .padding()
         }
         .onTapGesture {
-            router.present(namespace: namespace)
+            router.present()
         }
-        .swap(router)
+        .swap(router, namespace: namespace)
     }
 }
 

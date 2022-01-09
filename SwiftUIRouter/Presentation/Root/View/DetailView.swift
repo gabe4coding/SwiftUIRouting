@@ -8,16 +8,15 @@
 import Foundation
 import SwiftUI
 
-struct DetailView<R: Router>: NamespacedView, MatchingRouterBindable {
+struct DetailView<R: Router>: NamespacedView, RouterBindable {
     
     internal var router: R
-    internal var namespace: Namespace.ID
     
     @State var appear: Bool = false
+    @Environment(\.namespace) var namespace: Namespace.ID!
     
-    init(router: R, namespace: Namespace.ID) {
+    init(router: R) {
         self.router = router
-        self.namespace = namespace
     }
     
     var body: some View {
@@ -54,6 +53,6 @@ struct DetailView<R: Router>: NamespacedView, MatchingRouterBindable {
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(router: Router(isPresented: .constant(true)), namespace: Namespace.init().wrappedValue)
+        DetailView(router: Router(isPresented: .constant(true)))
     }
 }

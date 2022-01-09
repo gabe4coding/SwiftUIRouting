@@ -14,10 +14,3 @@ protocol RouterBindable {
     
     init(router: RouterObject)
 }
-
-protocol MatchingRouterBindable {
-    associatedtype RouterObject: Router
-    var router: RouterObject { get }
-    
-    init(router: RouterObject, namespace: Namespace.ID)
-}

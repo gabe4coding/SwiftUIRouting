@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+
+
 class Router: ObservableObject {
     struct State {
         var navigating: AnyView? = nil
@@ -90,18 +92,22 @@ private extension Router {
 
 extension View {
     func navigation(_ router: Router) -> some View {
-        self.modifier(NavigationModifier(presentingView: router.binding(keyPath: \.navigating)))
+        modifier(NavigationModifier(presentingView: router.binding(keyPath: \.navigating)))
     }
     
     func sheet(_ router: Router) -> some View {
-        self.modifier(SheetModifier(presentingView: router.binding(keyPath: \.presentingSheet)))
+        modifier(SheetModifier(presentingView: router.binding(keyPath: \.presentingSheet)))
     }
     
     func top(_ router: Router) -> some View {
-        self.modifier(TopViewModifier(presentingView: router.binding(keyPath: \.topView)))
+        modifier(TopViewModifier(presentingView: router.binding(keyPath: \.topView)))
     }
     
     func swap(_ router: Router) -> some View {
-        return self.modifier(SwapViewModifier(presentingView: router.binding(keyPath: \.swapView)))
+        modifier(SwapViewModifier(presentingView: router.binding(keyPath: \.swapView)))
+    }
+    
+    func swap(_ router: Router, namespace: Namespace.ID) -> some View {
+        modifier(SwapViewModifier(presentingView: router.binding(keyPath: \.swapView))).namespace(namespace)
     }
 }
